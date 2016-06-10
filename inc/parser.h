@@ -6,7 +6,7 @@
 /*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:21:04 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 16:28:33 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/10 18:15:42 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ enum					e_read
 /*
 ** room.c
 */
-t_room		*new_room(char *name, size_t x, size_t y, enum e_read status);
+t_room		*new_room(char *name, t_uint x, t_uint y, enum e_read status);
 void		del_room(void *room, size_t useless);
 int			cmp_room_names(const void *a, const void *b, size_t n);
 

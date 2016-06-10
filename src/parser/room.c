@@ -6,7 +6,7 @@
 /*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 16:22:06 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 16:43:24 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/10 18:15:56 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "parser.h"
 
-t_room		*new_room(char *name, size_t x, size_t y, enum e_read status)
+t_room		*new_room(char *name, t_uint x, t_uint y, enum e_read status)
 {
 	t_room	*new;
 
@@ -24,6 +24,7 @@ t_room		*new_room(char *name, size_t x, size_t y, enum e_read status)
 	new->name = ft_strdup(name);
 	new->x = x;
 	new->y = y;
+	new->distance = UINT_MAX;
 	if (status == R_START)
 		new->status = START;
 	else if (status == R_END)

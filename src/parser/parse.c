@@ -6,7 +6,7 @@
 /*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 14:24:52 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 17:32:07 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/10 18:17:43 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static int		get_n_ants(char *line)
 {
 	int	n_ants;
 
+	if (ft_istoobig(line))
+		error(E_INVALID, "Too many ants.");
 	n_ants = ft_atoi(line);
 	while (*line)
 		if (!ft_isdigit(*line++))
@@ -106,12 +108,27 @@ static int		read_loop(t_arr *rooms, int n_ants, enum e_read status)
 
 void			parse(t_arr *ants, t_arr *rooms)
 {
-	int	n_ants;
+	int		n_ants;
+	t_room	**start;
 
 	rooms->del = del_room;
 	rooms->cmp = cmp_room_names;
 	n_ants = read_loop(rooms, 0, R_NONE);
-	ft_arrpush(ants, *((t_room **)ft_arrget(rooms, 0)), -1);
-	ft_arrmult(ants, n_ants);
 	ft_putendl("");
+	if (!(start = (t_room **)ft_arrget(rooms, 0)) \
+			|| (*start)->status != START)
+		error(E_INVALID, "Start-room not found.");
+	ft_arrpush(ants, *start, -1);
+	ft_arrmult(ants, n_ants);
+	start = rooms->ptr;
+	while (*start)
+	{
+		if ((*start)->status == END)
+		{
+			ft_arrswap(rooms, -1, start - (t_room **)rooms->ptr);
+			return ;
+		}
+		start++;
+	}
+	error(E_INVALID, "End-room not found.");
 }

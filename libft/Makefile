@@ -6,7 +6,7 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/09 21:26:32 by mcanal            #+#    #+#              #
-#    Updated: 2016/06/10 12:26:24 by mcanal           ###   ########.fr        #
+#    Updated: 2016/06/10 18:22:42 by mcanal           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -131,18 +131,20 @@ BASIC = \033[0m
 all:
 	@$(MAKE) $(NAME)
 
-me_cry: CFLAGS = -Wall -Wextra -Werror -Wpedantic -Wshadow -Wcast-align \
-			-Wconversion -Wstrict-prototypes -Wmissing-prototypes \
-			-Wmissing-declarations -Wfloat-equal -Wbad-function-cast -Wundef \
-			-Wstrict-overflow=5 -Waggregate-return -Wunreachable-code \
-			-Winit-self -Wold-style-definition -Wpadded -Wredundant-decls -O2 
-me_cry: $(NAME)
+me_cry:
+	@$(MAKE) $(NAME) \
+		"CFLAGS = -Wpedantic -Wshadow -Wconversion -Wcast-align \
+-Wstrict-prototypes -Wmissing-prototypes -Wunreachable-code -Winit-self \
+-Wmissing-declarations -Wfloat-equal -Wbad-function-cast -Wundef \
+-Waggregate-return -Wstrict-overflow=5 -Wold-style-definition -Wpadded \
+-Wredundant-decls -Wall -Werror -Wextra -O2" #-Wcast-qual
 
-debug: CFLAGS = -g -ggdb
-debug: $(NAME)
+debug:
+	@$(MAKE) $(NAME) "CFLAGS = -g -ggdb"
 
-sanitize: CFLAGS = -g -ggdb -O2 -fsanitize=address,undefined
-sanitize: $(NAME)
+sanitize:
+	@$(MAKE) $(NAME) \
+		"CFLAGS = -g -ggdb -O2 -fsanitize=address,undefined -ferror-limit=5"
 
 -include $(DEPS)
 

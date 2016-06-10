@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/29 13:23:15 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 14:56:58 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/10 18:14:35 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ enum					e_status
 typedef struct s_room	t_room;
 struct	s_room
 {
-	char			*name;
-	size_t			x;
-	size_t			y;
 	t_arr			*linked_rooms;
+	char			*name;
+	t_uint			x;
+	t_uint			y;
+	t_uint			distance;
 	enum e_status	status;
 };
 
