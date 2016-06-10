@@ -6,14 +6,14 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/29 13:16:03 by mcanal            #+#    #+#              #
-#    Updated: 2016/06/09 11:28:58 by mcanal           ###   ########.fr        #
+#    Updated: 2016/06/10 16:25:03 by mcanal           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =	lem-in
 
 C_SRC =		main.c		error.c
-C_PARSER =	parse.c		
+C_PARSER =	parse.c		room.c
 C_DOER =	
 
 O_DIR = obj
@@ -57,7 +57,7 @@ sanitize:
 		"CFLAGS = -g -ggdb -fsanitize=address,undefined -ferror-limit=5"
 
 me_cry:
-	@$(MAKE) -C libft
+	@$(MAKE) -C libft me_cry
 	@$(MAKE) $(NAME) \
 		"CFLAGS = -Wpedantic -Wshadow -Wconversion -Wcast-align \
 -Wstrict-prototypes -Wmissing-prototypes -Wunreachable-code -Winit-self \

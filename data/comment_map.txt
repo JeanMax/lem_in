@@ -1,0 +1,13 @@
+3
+##start
+#hey dude
+0 1 0
+##end
+#hey dude
+1 5 0
+2 9 0
+3 13 0
+0-2
+#hey dude
+2-3
+3-1

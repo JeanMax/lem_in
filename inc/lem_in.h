@@ -6,33 +6,50 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/29 13:23:15 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/09 11:31:01 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/10 14:56:58 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 
-/*
-** define
-*/
 # define LEM_IN_H
 
-/*
-** include
-*/
 # include "libft.h"
 
 /*
-** enum
+** error code enum
 */
 enum					e_error
 {
 	E_NOERROR = 0,
 	E_NOEXIT = (1 << 0),
 	E_USAGE = (1 << 1),
-	E_OPEN = (1 << 2),
-	E_READ = (1 << 3),
-	E_INVALID = (1 << 4),
+	E_READ = (1 << 2),
+	E_INVALID = (1 << 3),
+};
+
+/*
+** room status enum
+*/
+enum					e_status
+{
+	START,
+	END,
+	EMPTY,
+	FULL
+};
+
+/*
+** room struct
+*/
+typedef struct s_room	t_room;
+struct	s_room
+{
+	char			*name;
+	size_t			x;
+	size_t			y;
+	t_arr			*linked_rooms;
+	enum e_status	status;
 };
 
 /*
@@ -45,7 +62,7 @@ void					error(t_uint flag, char *msg);
 ** PARSER
 ** parse.c
 */
-
+void					parse(t_arr *ants, t_arr *rooms);
 
 /*
 ** DOER
