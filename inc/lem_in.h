@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/29 13:23:15 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 18:14:35 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/12 10:52:13 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void					parse(t_arr *ants, t_arr *rooms);
 
 /*
 ** DOER
-** todo.c
+** do.c
 */
+void					move_ants(t_room **ants);
 
 #endif

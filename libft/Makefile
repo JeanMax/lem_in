@@ -6,7 +6,7 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/09 21:26:32 by mcanal            #+#    #+#              #
-#    Updated: 2016/06/10 18:22:42 by mcanal           ###   ########.fr        #
+#    Updated: 2016/06/12 11:33:01 by mcanal           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,7 +17,6 @@ AR =		ar
 ARFLAGS =	-rcs
 RM =		rm -rf
 MKDIR =		mkdir -p
-MAKE =		make -j
 
 I_DIR =		-I inc/
 O_DIR =		obj
@@ -126,25 +125,10 @@ GREEN =  \033[32;01m
 BLUE =  \033[34;01m
 BASIC = \033[0m
 
-.PHONY: all debug sanitize clean fclean re
+.PHONY: all clean fclean re
 
 all:
 	@$(MAKE) $(NAME)
-
-me_cry:
-	@$(MAKE) $(NAME) \
-		"CFLAGS = -Wpedantic -Wshadow -Wconversion -Wcast-align \
--Wstrict-prototypes -Wmissing-prototypes -Wunreachable-code -Winit-self \
--Wmissing-declarations -Wfloat-equal -Wbad-function-cast -Wundef \
--Waggregate-return -Wstrict-overflow=5 -Wold-style-definition -Wpadded \
--Wredundant-decls -Wall -Werror -Wextra -O2" #-Wcast-qual
-
-debug:
-	@$(MAKE) $(NAME) "CFLAGS = -g -ggdb"
-
-sanitize:
-	@$(MAKE) $(NAME) \
-		"CFLAGS = -g -ggdb -O2 -fsanitize=address,undefined -ferror-limit=5"
 
 -include $(DEPS)
 

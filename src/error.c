@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 03:39:12 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/09 17:47:12 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/12 12:58:10 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		get_index(t_uint flag)
 void			error(t_uint flag, char *msg)
 {
 	const char	*error[] = {
-		"Usage: ./lem-in", //TODO: save av[0] in global?
+		"Usage: Too many args.", //TODO: save av[0] in global?
 		"Ouch... can't read this.",
 		"What the heck is that file? Nah, just try with something else. - "
 	};

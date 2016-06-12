@@ -6,7 +6,7 @@
 /*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/10 16:22:06 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 18:15:56 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/11 13:56:56 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ int			cmp_room_names(const void *a, const void *b, size_t useless)
 {
 	(void)useless;
 	return (ft_strcmp((char *)(*(t_room **)a)->name, *(char **)b));
+}
+
+void		set_room_distances(t_room *room, t_uint distance)
+{
+	t_room	**swap;
+
+	if (room->distance <= distance)
+		return ;
+	room->distance = distance;
+	swap = (t_room **)room->linked_rooms->ptr;
+	while (*swap)
+		set_room_distances(*swap++, distance + 1);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lemin_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 00:12:49 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 17:14:16 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/12 12:55:27 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,30 @@
 
 #include "lem_in.h"
 
+/*
 // <--- debug
 static void		debug_room(t_room *room)
 {
 	t_room	**links;
 
 	ft_debugstr("name", room->name);
-	ft_debugnbr("x", room->x);
-	ft_debugnbr("y", room->y);
+	ft_debugnbr("x", (int)room->x);
+	ft_debugnbr("y", (int)room->y);
+	ft_debugnbr("distance", (int)room->distance);
 	switch (room->status)
 	{
 		case START:
 			ft_debugstr("status", "START");
-			break;
+			break ;
 		case END:
 			ft_debugstr("status", "END");
-			break;
+			break ;
 		case EMPTY:
 			ft_debugstr("status", "EMPTY");
-			break;
+			break ;
 		case FULL:
 			ft_debugstr("status", "FULL");
-			break;
+			break ;
 		default:
 			ft_debugstr("status", "????");
 	}
@@ -85,6 +87,7 @@ static void		debug_ants(t_room **ants, int index)
 	debug_ants(ants + 1, index + 1);
 }
 // debug --->
+*/
 
 
 int				main(int ac, char **av)
@@ -99,9 +102,11 @@ int				main(int ac, char **av)
 	rooms = ft_arrnew(32, sizeof(t_room *));
 
 	parse(ants, rooms);
+	ft_putendl("");
+	move_ants(ants->ptr);
 
-	debug_rooms(rooms->ptr, 0);	/* debug */
-	debug_ants(ants->ptr, 0);	/* debug */
+	/* debug_rooms(rooms->ptr, 0);	/\* debug *\/ */
+	/* debug_ants(ants->ptr, 0);	/\* debug *\/ */
 
 	ft_arrdel(&rooms);
 	ft_arrdel(&ants);

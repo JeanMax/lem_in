@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 14:13:23 by mcanal            #+#    #+#             */
-/*   Updated: 2016/05/24 10:33:44 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/11 13:48:17 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@
 # endif
 
 # ifndef INT_MAX
-#  define SHRT_MAX		32767
+#  define SHRT_MAX		0x7fff
 #  define SHRT_MIN		(-SHRT_MAX - 1)
-#  define USHRT_MAX		(2 * SHRT_MAX + 1)
-#  define INT_MAX		2147483647
+#  define USHRT_MAX		0xffff
+#  define INT_MAX		0x7fffffff
 #  define INT_MIN		(-INT_MAX - 1)
-#  define UINT_MAX		(2 * INT_MAX + 1)
-#  define LONG_MAX		9223372036854775807
+#  define UINT_MAX		0xffffffff
+#  define LONG_MAX		0x7fffffffffffffff
 #  define LONG_MIN		(-LONG_MAX - 1)
-#  define ULONG_MAX		(2 * LONG_MAX + 1)
+#  define ULONG_MAX		0xffffffffffffffff
 # endif
 
 # include <string.h>

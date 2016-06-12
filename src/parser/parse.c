@@ -6,7 +6,7 @@
 /*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 14:24:52 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 18:17:43 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/12 13:08:24 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void		link_rooms(t_arr *rooms, char *line)
 	while (*to && *to != '-')
 		to++;
 	*to++ = 0;
+	if (!ft_strcmp(line, to))
+		error(E_INVALID, "Can't link a room with itself.");
 	from_room = ft_arrfind(rooms, line);
 	to_room = ft_arrfind(rooms, to);
 	if (!from_room || !to_room)
@@ -39,8 +41,8 @@ static void		link_rooms(t_arr *rooms, char *line)
 static void		fill_rooms(t_arr *rooms, char *line, enum e_read status)
 {
 	char	*name;
-	int		x;
-	int		y;
+	t_uint		x;
+	t_uint		y;
 
 	if (!ft_strchr(line, ' '))
 	{
@@ -53,16 +55,16 @@ static void		fill_rooms(t_arr *rooms, char *line, enum e_read status)
 	if (!*line)
 		error(E_INVALID, "Weird room.");
 	*line++ = 0;
-	x = ft_atoi(line);
+	x = (t_uint)ft_atoi(line);
 	while (*line && *line != ' ')
 		line++;
 	if (!*line)
 		error(E_INVALID, "Weird room.");
-	y = ft_atoi(++line);
+	y = (t_uint)ft_atoi(++line);
 	ft_arrpush(rooms, new_room(name, x, y, status), status == R_START ? 0 : -1);
 }
 
-static int		get_n_ants(char *line)
+static t_uint	get_n_ants(char *line)
 {
 	int	n_ants;
 
@@ -74,10 +76,10 @@ static int		get_n_ants(char *line)
 			error(E_INVALID, "Invalid ants number.");
 	if (n_ants < 1)
 		error(E_INVALID, "Not enough ants.");
-	return (n_ants);
+	return ((t_uint)n_ants);
 }
 
-static int		read_loop(t_arr *rooms, int n_ants, enum e_read status)
+static t_uint	read_loop(t_arr *rooms, t_uint n_ants, enum e_read status)
 {
 	char			*line;
 	int				ret;
@@ -97,7 +99,7 @@ static int		read_loop(t_arr *rooms, int n_ants, enum e_read status)
 		else if (!ft_strcmp(line + 1, "#end"))
 			status = R_END;
 	}
-	else
+	else if (*line && *line != 'L')
 	{
 		fill_rooms(rooms, line, status);
 		status = R_NONE;
@@ -108,13 +110,12 @@ static int		read_loop(t_arr *rooms, int n_ants, enum e_read status)
 
 void			parse(t_arr *ants, t_arr *rooms)
 {
-	int		n_ants;
+	t_uint	n_ants;
 	t_room	**start;
 
 	rooms->del = del_room;
 	rooms->cmp = cmp_room_names;
 	n_ants = read_loop(rooms, 0, R_NONE);
-	ft_putendl("");
 	if (!(start = (t_room **)ft_arrget(rooms, 0)) \
 			|| (*start)->status != START)
 		error(E_INVALID, "Start-room not found.");
@@ -125,7 +126,10 @@ void			parse(t_arr *ants, t_arr *rooms)
 	{
 		if ((*start)->status == END)
 		{
-			ft_arrswap(rooms, -1, start - (t_room **)rooms->ptr);
+			set_room_distances(*start, 0);
+			/* ft_arrswap(rooms, -1, (int)(start - (t_room **)rooms->ptr)); */
+			if ((*(t_room **)rooms->ptr)->distance == UINT_MAX)
+				error(E_INVALID, "Start and End rooms not connected.");
 			return ;
 		}
 		start++;
