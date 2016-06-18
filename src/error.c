@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 03:39:12 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/12 12:58:10 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/12 14:54:49 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ static int		get_index(t_uint flag)
 void			error(t_uint flag, char *msg)
 {
 	const char	*error[] = {
-		"Usage: Too many args.", //TODO: save av[0] in global?
-		"Ouch... can't read this.",
-		"What the heck is that file? Nah, just try with something else. - "
+		": Too many args.",
+		": Ouch... can't read this.",
+		": What the heck is that file? Nah, just try with something else. - "
 	};
 
+	fail(g_exec_name);
 	if (msg)
 	{
 		fail(error[get_index(flag & (t_uint)~E_NOEXIT)]);

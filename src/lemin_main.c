@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 00:12:49 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/12 12:55:27 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/12 14:49:25 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 */
 
 #include "lem_in.h"
+
+char			*g_exec_name;
 
 /*
 // <--- debug
@@ -95,7 +97,7 @@ int				main(int ac, char **av)
 	t_arr	*ants;
 	t_arr	*rooms;
 
-	(void)av;
+	g_exec_name = *av;
 	if (ac != 1)
 		error(E_USAGE, NULL);
 	ants = ft_arrnew(32, sizeof(t_room *));

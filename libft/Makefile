@@ -6,7 +6,7 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/09/09 21:26:32 by mcanal            #+#    #+#              #
-#    Updated: 2016/06/12 11:33:01 by mcanal           ###   ########.fr        #
+#    Updated: 2016/06/12 13:27:07 by mcanal           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -147,6 +147,8 @@ $(OBJS): | $(O_DIR)
 
 $(O_DIR):
 	@$(MKDIR) $(O_DIR)
+	@echo "$(O_DIR)" > .gitignore
+	@echo "$(NAME)" >> .gitignore
 
 clean:
 	@$(RM) $(O_DIR)

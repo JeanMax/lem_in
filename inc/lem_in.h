@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/29 13:23:15 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/12 10:52:13 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/06/12 14:36:44 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ enum					e_status
 	EMPTY,
 	FULL
 };
+
+/*
+** globad
+*/
+extern char				*g_exec_name;
 
 /*
 ** room struct
