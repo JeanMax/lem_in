@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/29 13:23:15 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/12 14:36:44 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/09/25 19:06:47 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ extern char				*g_exec_name;
 ** room struct
 */
 typedef struct s_room	t_room;
-struct	s_room
+struct					s_room
 {
-	t_arr			*linked_rooms;
-	char			*name;
-	t_uint			x;
-	t_uint			y;
-	t_uint			distance;
-	enum e_status	status;
+	t_arr				*linked_rooms;
+	char				*name;
+	t_uint				x;
+	t_uint				y;
+	t_uint				distance;
+	enum e_status		status;
 };
 
 /*

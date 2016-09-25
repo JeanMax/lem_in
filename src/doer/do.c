@@ -6,7 +6,7 @@
 /*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/12 10:49:12 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/12 10:50:47 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/09/25 19:32:57 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 */
 
 #include "doer.h"
-
 
 static void		print_move(int ant_index, char *room_name)
 {
@@ -42,32 +41,34 @@ static t_room	*find_best_room(t_room **rooms, t_uint distance)
 	return (best);
 }
 
+static t_bool	move_loop(t_room **ants)
+{
+	t_bool	job_done;
+	t_room	*to;
+
+	job_done = TRUE;
+	while (*ants)
+	{
+		if ((to = find_best_room((*ants)->linked_rooms->ptr, \
+								(*ants)->distance)))
+		{
+			print_move((int)(ants - ants) + 1, to->name);
+			if ((*ants)->status != START)
+				(*ants)->status = EMPTY;
+			*ants = to;
+			if (to->status != END)
+				to->status = FULL;
+		}
+		if ((*ants)->status != END)
+			job_done = FALSE;
+		ants++;
+	}
+	ft_putendl("");
+	return (job_done);
+}
+
 void			move_ants(t_room **ants)
 {
-	t_room	**swap;
-	t_room	*to;
-	t_bool	job_done;
-
-	job_done = FALSE;
-	while (!job_done)
-	{
-		job_done = TRUE;
-		swap = ants;
-		while (*swap)
-		{
-			if ((to = find_best_room((*swap)->linked_rooms->ptr, (*swap)->distance)))
-			{
-				print_move((int)(swap - ants) + 1, to->name);
-				if ((*swap)->status != START)
-					(*swap)->status = EMPTY;
-				*swap = to;
-				if (to->status != END)
-					to->status = FULL;
-			}
-			if ((*swap)->status != END)
-				job_done = FALSE;
-			swap++;
-		}
-		ft_putendl("");
-	}
+	while (!move_loop(ants))
+		;
 }

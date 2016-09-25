@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 03:39:12 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/12 14:54:49 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/09/25 19:07:27 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 /*
 ** I'm pretty sure there is another way...
 */
+
 static int		get_index(t_uint flag)
 {
 	int		index;

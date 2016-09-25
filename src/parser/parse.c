@@ -6,7 +6,7 @@
 /*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/09 14:24:52 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/12 13:08:24 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/09/25 19:14:55 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void		link_rooms(t_arr *rooms, char *line)
 
 static void		fill_rooms(t_arr *rooms, char *line, enum e_read status)
 {
-	char	*name;
+	char		*name;
 	t_uint		x;
 	t_uint		y;
 
@@ -127,7 +127,6 @@ void			parse(t_arr *ants, t_arr *rooms)
 		if ((*start)->status == END)
 		{
 			set_room_distances(*start, 0);
-			/* ft_arrswap(rooms, -1, (int)(start - (t_room **)rooms->ptr)); */
 			if ((*(t_room **)rooms->ptr)->distance == UINT_MAX)
 				error(E_INVALID, "Start and End rooms not connected.");
 			return ;

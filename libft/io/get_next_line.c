@@ -6,7 +6,7 @@
 /*   By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/28 17:07:11 by mcanal            #+#    #+#             */
-/*   Updated: 2016/06/10 18:19:27 by mcanal           ###   ########.fr       */
+/*   Updated: 2016/09/25 17:57:54 by mcanal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "libft.h"
 #include <unistd.h>
 
-# define BUFF_SIZE		127
+#define BUFF_SIZE		127
 
 static int		dup_line(t_arr *arr, char **line)
 {
